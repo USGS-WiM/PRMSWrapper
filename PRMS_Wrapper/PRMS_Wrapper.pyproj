@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>47a77e7f-ab21-413c-a22b-e9edb1f43167</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>PRMS_Wrapper.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>PRMS_Wrapper</Name>
+    <RootNamespace>PRMS_Wrapper</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <PublishUrl>D:\users\jknewson\Documents\Projects\IowaWrapper</PublishUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="PRMS_Wrapper.py" />
+    <Compile Include="vos\serviceAgents\ServiceAgent.py" />
+    <Compile Include="vos\serviceAgents\__init__.py" />
+    <Compile Include="vos\TimeSeries.py" />
+    <Compile Include="vos\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="vos\" />
+    <Folder Include="vos\serviceAgents\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>
