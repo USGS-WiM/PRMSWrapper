@@ -226,6 +226,9 @@ class MesonetServiceAgent(ServiceAgentBase):
         elif(stcode == '47'): return "WI"
         elif(stcode == '21'): return "MN"
         elif(stcode == '23'): return "MO"
+        elif(stcode == '25'): return "NE"
+        elif(stcode == '39'): return "SD"
+        elif(stcode == '14'): return "KS"
         else: 
             self.__sm__("invalid stcode " + stcode + ' ', 1.223, 'ERROR')
             raise BaseException("stcode invalid")
