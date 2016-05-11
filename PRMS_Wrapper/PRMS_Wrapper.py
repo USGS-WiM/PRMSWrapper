@@ -243,12 +243,10 @@ class PRMSWrapper(object):
     
     def __getSubFolder__(self, fileType):
         path =""
-        if fileType in ('model'): path ="prms3.0.5_win"
-        elif fileType in ('climate','runoff'): path ="prms3.0.5_win\\projects\\data_pulls"
+        if fileType in ('model','reachTable'): path ="prms3.0.5_win"
         elif fileType in ('control'): path ="prms3.0.5_win\\projects\\{0}\\control"
-        elif fileType in ('data','params'): path ="prms3.0.5_win\\projects\\{0}\\input"
+        elif fileType in ('data','params','climate','runoff'): path ="prms3.0.5_win\\projects\\{0}\\input"
         elif fileType in ('nseg'): path ="prms3.0.5_win\\projects\\{0}\\output"
-        elif fileType in ('reachTable'): path ="prms3.0.5_win"
         elif fileType in ('app'): path ="prms3.0.5_win\\bin"
         elif fileType in ('appWorkDirectory'): path ="prms3.0.5_win\\projects\\{0}"
 
@@ -259,8 +257,8 @@ class PRMSWrapper(object):
     def __getFile__(self, fileType):
         file =""
         if fileType in ('model'): file = "models.txt"
-        elif fileType in ('climate'): file ="{0}_climate.txt"
-        elif fileType in ('runoff'): file ="{0}_runoff.txt"
+        elif fileType in ('climate'): file ="{0}.weather"
+        elif fileType in ('runoff'): file ="{0}.runoff"
         elif fileType in ('control'): file ="{0}.control"
         elif fileType in ('data'): file ="{0}.data"
         elif fileType in ('params'): file ="{0}.params"
