@@ -1,5 +1,7 @@
 # PRSMWrapper
 ##Data Structure
+
+[![Join the chat at https://gitter.im/USGS-WiM/PRMSWrapper](https://badges.gitter.im/USGS-WiM/PRMSWrapper.svg)](https://gitter.im/USGS-WiM/PRMSWrapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ```bash
 prms3.0.5
 -> file containing list all models
