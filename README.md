@@ -61,10 +61,6 @@ In the spirit of open source, please cite any re-use of the source code stored i
 
 `This project contains code produced by the Web Informatics and Mapping (WIM) team at the United States Geological Survey (USGS). As a work of the United States Government, this project is in the public domain within the United States. https://wim.usgs.gov`
 
-## Acknowledgments
-
-* [Network-Linked Data Index](https://cida.usgs.gov/nldi/about)
-* [GeoJson.Net](https://github.com/GeoJSON-Net/GeoJSON.Net)
 
 ## About WIM
 
