@@ -19,7 +19,7 @@
 
     "homepageURL": "https://wim.usgs.gov",
     "downloadURL": "https://github.com/USGS-WiM/PRMSWrapper/archive/master.zip",
-    "disclaimerURL": "https://github.com/USGS-WiM/PRMSWrapper/blob/master/LICENSE.md",
+    "disclaimerURL": "https://github.com/USGS-WiM/PRMSWrapper/blob/master/DISCLAIMER.md",
     "repositoryUrl": "https://github.com/USGS-WiM/PRMSWrapper",
     "vcs": "git",
 
