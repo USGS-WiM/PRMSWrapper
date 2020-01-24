@@ -307,40 +307,45 @@ class PRMSWrapper(object):
     def __updateNseg__(self, segfile, segTable):
         
         rows = None
-        index = 9
+        can_continue = False
         try:
-            with open(segfile, 'r') as file:
-                contents = file.readlines()
-            if self.__DoReplace__:            
+            yr = self.__StartDate__.strftime('%Y')
+            mnth = self.__StartDate__.strftime('%m')
+            dy = self.__StartDate__.strftime('%d')
+            substring = yr+'-'+mnth+'-'+dy+':00:00:00'
+            
+            if self.__DoReplace__:
+                can_continue = True
                 self.__sm__("deleting all rows", 0.275)  
                 arcpy.TruncateTable_management(segTable)
                 
-            else:
-                yr = self.__StartDate__.strftime('%Y')
-                mnth = self.__StartDate__.strftime('%m')
-                dy = self.__StartDate__.strftime('%d')
-                substring = yr+'-'+mnth+'-'+dy+':00:00:00'
-                index = self.__index_containing_substring__(contents, substring)
 
-            self.__sm__("rebuilding table", 0.278) 
-            rows = arcpy.da.InsertCursor(segTable, ("nsegment","segment_cf","tstamp_str","tstamp"))
-            
-            for r in range(index,len(contents)):
-                rowValues = contents[r].split()
-                tstampValues = rowValues[0].split(':')[0].split('-')
+            with open(segfile, 'r') as file:
+                self.__sm__("rebuilding table", 0.278) 
+                rows = arcpy.da.InsertCursor(segTable, ("nsegment","segment_cf","tstamp_str","tstamp"))
+                for _ in range(9):
+                    next(file)
+                for r in file:
+                    if not can_continue:
+                        if not substring in r:
+                            continue
+                        else:
+                            can_continue = True
+                    rowValues = r.split()
+                    tstampValues = rowValues[0].split(':')[0].split('-')
 
-                yr = int(tstampValues[0])
-                mo = int(tstampValues[1])
-                da = int(tstampValues[2])
+                    yr = int(tstampValues[0])
+                    mo = int(tstampValues[1])
+                    da = int(tstampValues[2])
     
-                tstamp_str = str(mo)+'/'+str(da)+'/'+str(yr)
-                nsegment = rowValues[1]
-                segment_cf = rowValues[2]
-
-                dt = datetime.datetime(yr,mo,da)
+                    tstamp_str = str(mo)+'/'+str(da)+'/'+str(yr)
+                    nsegment = rowValues[1]
+                    segment_cf = rowValues[2]
     
-                rows.insertRow((nsegment,segment_cf,tstamp_str,dt))
-            #next r
+                    dt = datetime.datetime(yr,mo,da)
+    
+                    rows.insertRow((nsegment,segment_cf,tstamp_str,dt))
+                #next r
             self.__sm__("finished rebuilding table", 0.298) 
         except:
             tb = traceback.format_exc()
@@ -386,10 +391,10 @@ class Main(object):
         today = datetime.date.today()
         yesterday= today - datetime.timedelta(days=1)
 
-        startDate = yesterday #datetime.date(2015,12,31)
+        startDate = yesterday #datetime.date(2016,05,13)
         endDate = yesterday
 
-        prmswrap =  PRMSWrapper(startDate, endDate,r"C:\WIM\Documents\Projects\WiM\IowaCedarRiver\PRMS\PRMS",True)
+        prmswrap =  PRMSWrapper(startDate, endDate,r"D:\Projects\Data\IowaStreamEst\PRMS",False)
 
         prmswrap.Run()
 
